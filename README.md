@@ -64,6 +64,9 @@
 
 窗口隐藏工具 [MIT license](https://opensource.org/licenses/MIT).
 
-
-**如果对你有帮助，不妨请作者喝杯咖啡**
-![](https://youngreeds.com/code.png)
+<p align="center">
+	<b>如果对你有帮助，不妨请作者喝杯咖啡</b>
+</p>
+<p align="center">
+	<img src="https://youngreeds.com/code.png" alt="支付宝">
+</p>
