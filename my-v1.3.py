@@ -66,6 +66,7 @@ class WindowManager:
         self.hide_key = "ctrl+alt+h"
         self.show_key = "ctrl+alt+s"
         self.self_key = "ctrl+alt+t"
+        self.is_clear = False
         # 用于状态检测
         self.keys_pressed = set()
         self.selfVisibly = True # 隐藏此窗口
@@ -261,12 +262,14 @@ class WindowManager:
     # 绑定快捷键
     def bind_hotkeys(self):
         keys = [self.hide_key, self.show_key, self.self_key]
-        # for key in keys:
-        #     try:
-        #         keyboard.add_hotkey(key, self.action_for_key(key))
-        #     except ValueError:
-        #         self.show_error_message(f"无效的组合键: {key}")
-
+        if self.is_clear == False:
+            # for key in keys:
+            #     try:
+            #         keyboard.add_hotkey(key, self.action_for_key(key))
+            #     except ValueError:
+            #         self.show_error_message(f"无效的组合键: {key}")
+            keyboard.unhook_all()
+            self.is_clear = True
         self.save_config()  # 更新配置
 
     # 根据键名选择对应的动作
@@ -513,14 +516,17 @@ class WindowManager:
     def reset_hide_key(self):
         self.hide_entry.delete(0, tk.END)
         self.hide_entry.insert(0, "ctrl+alt+h")
+        self.set_hotkeys()
 
     def reset_show_key(self):
         self.show_entry.delete(0, tk.END)
         self.show_entry.insert(0, "ctrl+alt+s")
+        self.set_hotkeys()
 
     def reset_self_key(self):
         self.self_entry.delete(0, tk.END)
         self.self_entry.insert(0, "ctrl+alt+t")
+        self.set_hotkeys()
 
     def set_hotkeys(self):
         hide_key = self.hide_entry.get() or self.hide_key
